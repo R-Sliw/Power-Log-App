@@ -1,10 +1,19 @@
-export function Adder(): JSX.Element {
+export function Adder({ setDate, getDate }: any): JSX.Element {
     return (
         <div>
             <label htmlFor="date">
-                Dzień treningu: <input type="date" name="date" id="date" />
+                Dzień treningu:{' '}
+                <input
+                    onChange={(e) => setDate(e.target.value)}
+                    type="date"
+                    name="date"
+                    id="date"
+                />
             </label>
-            <button type="button"> OK </button>
+            <button type="button" onClick={getDate}>
+                {' '}
+                OK{' '}
+            </button>
             <label htmlFor="workout">
                 Rodzaj treningu:
                 <select name="workout" id="workout">

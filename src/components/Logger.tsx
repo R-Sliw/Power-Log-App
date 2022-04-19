@@ -1,3 +1,3 @@
-export function Logger(): JSX.Element {
-    return <div>Logger</div>
+export function Logger({ newData }: any): JSX.Element {
+    return <div>{newData}</div>
 }
