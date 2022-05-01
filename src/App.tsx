@@ -4,17 +4,16 @@ import { Adder } from './components/Adder'
 import { Logger } from './components/Logger'
 
 export function App(): JSX.Element {
-    const [date, setDate] = useState('')
-    const [newData, setNewData] = useState('')
+    const [adata, setaData] = useState({})
 
-    const getDate: () => void = () => {
-        setNewData(date)
+    const getDate: (a: object) => void = (data) => {
+        setaData(data)
     }
 
     return (
         <main className="App">
-            <Adder setDate={setDate} getDate={getDate} />
-            <Logger newData={newData} />
+            <Adder getDate={getDate} />
+            <Logger data={adata} />
         </main>
     )
 }
