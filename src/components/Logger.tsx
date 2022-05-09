@@ -5,19 +5,12 @@ const Log = styled.div`
     margin: 40px;
     width: 400px;
 `
-export function Logger({ data }: any): JSX.Element {
-    return (
-        <div>
-            {data
-                .map((newData: any) => (
-                    <Log>
-                        <p>{newData.date}</p>
-                        <p>{newData.type}</p>
-                        <p>{newData.series}</p>
-                        <p>{newData.workout}</p>
-                    </Log>
-                ))
-                .slice(1)}
-        </div>
-    )
+interface Props {
+    log: any
+}
+
+export function Logger({ log }: Props): JSX.Element {
+    console.log(log)
+
+    return <div>{log.date}</div>
 }

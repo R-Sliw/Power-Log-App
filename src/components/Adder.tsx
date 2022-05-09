@@ -1,72 +1,25 @@
-import { useState } from 'react'
+interface Props {
+    createLog: (e: React.FormEvent<EventTarget>) => void
+    text: string
+    setText: React.Dispatch<React.SetStateAction<string>>
+}
 
-export function Adder({ getDate }: any): JSX.Element {
-    const [data, setData] = useState({
-        date: '',
-        type: '',
-        series: '',
-        workout: '',
-    })
-
+export function Adder({ createLog, text, setText }: Props): JSX.Element {
     return (
         <div>
-            <label htmlFor="date">
-                Dzień treningu:
-                <input
-                    onChange={(e) => setData({ ...data, date: e.target.value })}
-                    type="date"
-                    name="date"
-                    id="date"
-                />
-            </label>
-            <button type="button" onClick={() => getDate(data)}>
-                OK
-            </button>
-            <label htmlFor="workout">
-                Rodzaj treningu:
-                <select
-                    name="workout"
-                    id="workout"
-                    onChange={(e) => setData({ ...data, type: e.target.value })}
-                >
-                    <option value="Klatka">Klatka</option>
-                    <option value="Nogi">Nogi</option>
-                    <option value="Barki">Barki</option>
-                </select>
-            </label>
-            <button type="button" onClick={() => getDate(data)}>
-                OK
-            </button>
-            <label htmlFor="series">
-                Nr serii:
-                <input
-                    type="number"
-                    name="series"
-                    id="series"
-                    onChange={(e) =>
-                        setData({ ...data, series: e.target.value })
-                    }
-                />
-            </label>
-            <button type="button" onClick={() => getDate(data)}>
-                {' '}
-                OK{' '}
-            </button>
-            <label htmlFor="workout">
-                Ilość potworzeń:
-                <input
-                    type="number"
-                    name="repetition"
-                    id="repetition"
-                    onChange={(e) =>
-                        setData({ ...data, workout: e.target.value })
-                    }
-                />
-            </label>
-            <button type="button" onClick={() => getDate(data)}>
-                {' '}
-                OK{' '}
-            </button>
+            <form onSubmit={(e) => createLog(e)}>
+                <label htmlFor="workout">
+                    <input
+                        type="date"
+                        name="date"
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                            setText(e.target.value)
+                        }
+                        value={text}
+                    />
+                </label>
+                <button type="submit">Dodaj trening</button>
+            </form>
         </div>
     )
 }

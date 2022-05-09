@@ -4,20 +4,18 @@ import { Adder } from './components/Adder'
 import { Logger } from './components/Logger'
 
 export function App(): JSX.Element {
-    const [logger, setLogger] = useState([{}])
+    const [log, setLog] = useState<any>([])
+    const [text, setText] = useState('')
 
-    const getDate: (data: object[]) => void = (data) => {
-        if (!data.date) {
-            return
-        }
-        const addDate = [...logger, data]
-        setLogger(addDate)
+    const createLog = (e: React.FormEvent<EventTarget>): void => {
+        e.preventDefault()
+        setLog([...log, { date: text, muscle: '' }])
     }
 
     return (
         <main className="App">
-            <Adder getDate={getDate} />
-            <Logger data={logger} />
+            <Adder createLog={createLog} setText={setText} text={text} />
+            <Logger log={log} />
         </main>
     )
 }
